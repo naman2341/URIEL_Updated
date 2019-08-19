@@ -4,6 +4,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<dos.h>
+#include<stdio.h>
 
 void menu1();
 class pas
@@ -80,14 +81,35 @@ class school:public pas
   int ver;     //Blue Ticks
   char pro[20][10],pro1[20];
   void prom();
+  void add_prom();
  }sc;
+
+void school::add_prom()
+{
+ ofstream fout;
+ char op;
+ fout.open("School_Pro.txt",ios::app);
+ char pro[10];
+ do
+  {
+   cout<<"Please enter your promise";
+   cin>>pro;
+   fout<<uname<<endl<<pro<<endl;
+    cout<<"Do you want to enter another promise?(Y/N)\n";
+    cin>>op;
+    if(op!='y'&&op!='Y')
+    break;
+  }while(1);
+  fout.close();
+  }
+
 
 void school::prom()
 {
  int i=0;
  ofstream fout;
  char op;
- fout.open("School_Pro.DAT",ios::binary|ios::app);
+ fout.open("School_Pro.txt",ios::app);
  char pro[20][10],pro1[20];
  cout<<"Enter your promises one by one(at least 5)\n";
  do
@@ -136,18 +158,128 @@ cout<<"You have already verified the promises of your school\n";
 cout<<s.count;
 }
 
+void review()
+{
+char revw[100];
+cout<<"You have selected to enter the review of your school\n";
+cout<<"Please enter your review (in 100 words)\n";
+gets(revw);
+ofstream fout;
+fout.open("Review.TXT",ios::app);
+fout<<s.sna<<endl<<s.uname<<endl<<revw;
+cout<<"Your review for "<<s.sna<<" has been saved\n";
+fout.close();
+}
 
-void disp2()
+void test()
+ {
+  cout<<"You have selected to attempt the test series\n";
+  cout<<"Do you want to make this intresting?\n";
+  cout<<"THEN PRESS ESC KEY\n";
+  if(getch()==27)
+   {
+   //SNAKES GAME MODIEFIED
+   cout<<"SNAKES\n";
+   }
+  else
+   {
+    char qn[30];
+    int count=0,ans,uans;
+    ifstream fin;
+    ifstream fin1;
+    fin.open("TEST1.TXT");
+    fin1.open("ANS1.TXT");
+    while(!fin.eof())
+     {
+      fin>>qn;
+      cout<<qn;
+      cout<<"\nYour Answer to the qn is...\n";
+      cin>>uans;
+      fin1>>ans;
+      if(uans==ans)
+       {
+	count++;
+	cout<<"\nYour answer was correct!!\n";
+       }
+      else
+       {
+	cout<<"\nThis was not the correct ans\n";
+	cout<<"\nThe correct ans was "<<ans;
+	cout<<endl;
+       }
+     }
+      fin.close();
+      fin1.close();
+      cout<<"\nYour final score is "<<count;
+   }
+   getch();
+}
+
+
+void stud_next()
 {
 do
 {
 cout<<"CHOOSE ONE OF THE FOLLOWING \n";
 cout<<"1.Verify promises of your school\n";
-cout<<"2.Online Test Simulation\n";
+cout<<"2.Offline Test Simulation\n";
 cout<<"3.Write a review of your school\n";
 cout<<"4.Exit";
 if(getch()==49)
 per_prom();
+else if(getch()==50)
+test();
+else if(getch()==51)
+review();
+else
+exit(0);
+}while(1);
+}
+
+void fest_info()
+{
+ofstream fout;
+char op;
+fout.open("Fest.TXT",ios::app);
+fout<<sc.uname<<endl;
+char fest[20],date[15],events[10],edetails[100];
+cout<<"Enter the name of your fest\n";
+gets(fest);
+fout<<fest<<endl;
+cout<<"Enter the date of the fest\n";
+gets(date);
+fout<<date<<endl;
+do
+{
+cout<<"Enter the name of a event of the fest\n";
+gets(events);
+cout<<"Enter the details about the event "<<events<<endl;
+gets(edetails);
+fout<<events<<endl<<edetails<<endl;
+cout<<"Do you want to add another event?\n";
+cin>>op;
+}while(op=='y'||op=='Y');
+fout<<"End"<<endl;
+fout.close();
+getch();
+}
+
+
+void school_next()
+{
+do
+{
+cout<<"CHOOSE ONE OF THE FOLLOWING \n";
+cout<<"1.Input fest details\n";
+cout<<"2.Add a promise\n";
+cout<<"3.Reply to reviews\n";
+cout<<"4.Exit";
+if(getch()==49)
+fest_info();
+else if(getch()==50)
+sc.add_prom();
+//else if(getch()==51)
+//reply_revw();
 else
 exit(0);
 }while(1);
@@ -415,7 +547,6 @@ void ip()
  {
   cout<<"1.Student\n";
   cout<<"2.School\n";
-  cout<<"3.Admin\n";
   if(getch()==49)
    {
     clrscr();
@@ -424,12 +555,12 @@ void ip()
     if(getch()==49)
      {
       reg1();
-      disp2();
+      stud_next();
      }
     else
      {
       login1();
-      disp2();
+      stud_next();
      }
    }
     else if(getch()==50)
@@ -440,7 +571,7 @@ void ip()
       if(getch()==49)
 	reg2();
       else
-	login1();
+	login2();
     }
     else
      cout<<"Please a valid option\n";
