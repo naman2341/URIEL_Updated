@@ -139,6 +139,7 @@ void per_prom()
 ifstream fin;
 s.count=0;
 char pro[20],op;
+int c;
 fin.open("School_Pro.DAT");
 cout<<"You have seleted to verify the promises of your school\n";
 if(s.count==0)
@@ -146,10 +147,15 @@ if(s.count==0)
 while(!fin.eof())
 {
 fin>>pro;
+c=strcmp(pro,s.sna);
+if(c==0)
+{
+fin>>pro;
 cout<<"Does your school have "<<pro<<" ? (Y/N)";
 cin>>op;
 if(op=='y'||op=='Y')
 s.count++;
+}
 }
 fin.close();
 }
@@ -280,6 +286,20 @@ else if(getch()==50)
 sc.add_prom();
 //else if(getch()==51)
 //reply_revw();
+/*void main()
+{
+char revw[100];
+cout<<"You have selected to reply to a review\n";
+cout<<"Please enter your reply (in 100 words)\n";
+gets(revw);
+ofstream fout;
+strcmp(sc.
+fout.open("Review.TXT",ios::app);
+fout<<"NPS"<<endl<<"naman2341"<<endl<<revw;
+cout<<"Your review for "<<"NPS"<<" has been saved\n";
+getch();
+}
+*/
 else
 exit(0);
 }while(1);
@@ -542,7 +562,93 @@ void login2()
      }
  }
 
-
+/*void op()
+{
+ ifstream fin;
+ char a[30];
+ cout<<"1.Top Institutes of India\n";
+ cout<<"2.Top Institutes in 5 regions\n";
+ cout<<"3.Top Institutes of each stream\n";
+ cout<<"4.Institues Around Me\n";
+ cout<<"5.Fests Around Me\n";
+ cout<<"6.Last Year qn paper\n";
+ cout<<"7.Highest Topper list\n";
+ cout<<"8.Last date to submit application\n";
+ if(getch()==49)
+ {
+ fin.open("");
+ while(!fin.eof())
+ {
+ fin.getline(a,'\n',30);
+ cout<<a<<endl;
+ }
+ }
+ else if(getch()==50)
+ {
+ fin.open("");
+ while(!fin.eof())
+ {
+ fin.getline(a,'\n',30);
+ cout<<a<<endl;
+ }
+ }
+ else if(getch()==51)
+ {
+ fin.open("");
+ while(!fin.eof())
+ {
+ fin.getline(a,'\n',30);
+ cout<<a<<endl;
+ }
+ }
+ else if(getch()==52)
+ {
+ fin.open("");
+ while(!fin.eof())
+ {
+ fin.getline(a,'\n',30);
+ cout<<a<<endl;
+ }
+ }
+ else if(getch()==53)
+ {
+ fin.open("");
+ while(!fin.eof())
+ {
+ fin.getline(a,'\n',30);
+ cout<<a<<endl;
+ }
+ }
+ else if(getch()==54)
+ {
+ fin.open("");
+ while(!fin.eof())
+ {
+ fin.getline(a,'\n',30);
+ cout<<a<<endl;
+ }
+ }
+ else if(getch()==55)
+ {
+ fin.open("");
+ while(!fin.eof())
+ {
+ fin.getline(a,'\n',30);
+ cout<<a<<endl;
+ }
+ }
+ else if(getch()==56)
+ {
+ fin.open("");
+ while(!fin.eof())
+ {
+ fin.getline(a,'\n',30);
+ cout<<a<<endl;
+ }
+ }
+ else
+ cout<<"Please enter a valid option\n";
+*/
 void ip()
  {
   cout<<"1.Student\n";
