@@ -1,0 +1,11 @@
+Top Management School
+1.IIM,Bangalore
+2.IIM,Ahmedabad
+3.IIM,Calcutta
+4.IIM,Lucknow
+5.IIM,Indore
+6.IIT,Kharagpur-Management School
+7.Xavier Labour Relations Institute
+8.IIM,Kozhikode
+9.IIT,Delhi-Management School
+10.IIT,Bombay-Management School
